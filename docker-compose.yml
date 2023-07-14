@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  node:
+    container_name: Apero-AperoBeerman
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
+      GITHUB_ACCESS_TOKEN: ${GITHUB_ACCESS_TOKEN}
+      GITHUB_USERNAME: ${GITHUB_USERNAME}
+      GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}
+    restart: always
