@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("Github issues bot2!");
+    res.send("Github issues bot!");
 });
 
 app.listen(PORT, () => {
@@ -51,14 +51,13 @@ client.on("interactionCreate", async (interaction) => {
         }
     } else if (interaction.isModalSubmit()) {
        const { fields } = interaction;
-	   console.log(fields);
        const issueTitle = fields.getTextInputValue("issueTitle");
        const issueDescription = fields.getTextInputValue("issueDescription");
        const octokit = new Octokit({
            auth: process.env.GITHUB_ACCESS_TOKEN,
            baseUrl: "https://api.github.com",
        });
-	   
+
 		octokit.rest.issues
 			.create({
 				owner: process.env.GITHUB_USERNAME || "",
@@ -74,16 +73,3 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 client.login(process.env.BOT_TOKEN);
-
-
-// data: {
-//   url: 'https://api.github.com/repos/Apero-Online/apero/issues/159',
-//   repository_url: 'https://api.github.com/repos/Apero-Online/apero',
-//   labels_url: 'https://api.github.com/repos/Apero-Online/apero/issues/159/labels{/name}',
-//   comments_url: 'https://api.github.com/repos/Apero-Online/apero/issues/159/comments',
-//   events_url: 'https://api.github.com/repos/Apero-Online/apero/issues/159/events',
-//   html_url: 'https://github.com/Apero-Online/apero/issues/159',
-//   id: 1803839744,
-//   node_id: 'I_kwDOJBt_6M5rhGkA',
-//   number: 159,
-//   title: 'rere',
